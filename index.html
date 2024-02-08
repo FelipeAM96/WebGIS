@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SIGMA - WebGIS</title>
+    <title>SIGMA - WebGIS - Felipe AM</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -31,18 +31,18 @@
             width: 50%;
             margin: 10px;
             border: 1px solid #ccc;
-            position: relative; /* Adicionado */
+            position: relative; 
         }
         .legend {
             position: absolute;
-            bottom: 50px; /* Ajuste de posição */
+            bottom: 50px; 
             left: 10px;
             background-color: white;
             padding: 5px;
             font-size: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            z-index: 1000; /* Adicionado */
+            z-index: 1000;
         }
         #logo-left {
             position: absolute;
@@ -60,46 +60,46 @@
             text-align: center;
             font-family: 'Lexend', sans-serif;
             font-size: 15px;
-            padding-bottom: 2vh; /* Adicionado para espaçamento inferior */
+            padding-bottom: 2vh; /* Ajouté pour espacement inférieur */
         }
         #footer {
             text-align: center;
             font-family: 'Lexend', sans-serif;
             font-size: 11px;
             margin-top: 20px;
-            padding-bottom: 20px; /* Adicionado para espaçamento inferior */
+            padding-bottom: 20px; /* Ajouté pour espacement inférieur */
             color: rgb(92, 91, 91);
         }
-        /* Estilo para o Geocoder */
+        /* Style pour le Geocoder */
         .leaflet-control-geocoder {
-            width: 300px; /* Ajuste conforme necessário */
-            font-size: 14px; /* Ajuste conforme necessário */
+            width: 300px; 
+            font-size: 14px; 
         }
         .leaflet-control-geocoder.leaflet-touch {
-            width: auto; /* Ajuste conforme necessário */
+            width: auto; 
         }
     </style>
 </head>
 <body>
     <div id="header">
-        <img src="Image1.png" alt="Imagem Esquerda" id="logo-left">
+        <img src="Image1.png" alt="Image Gauche" id="logo-left">
         Forêts Toulouse Sud
-        <img src="Image2.png" alt="Imagem Direita" id="logo-right">
+        <img src="Image2.png" alt="Image Droite" id="logo-right">
     </div>
     <div id="map-container">
         <div id="map1" class="map">
             <div class="legend" id="legend1">
-                Legend goes here for Map 1
+                Légende pour la Carte 1
             </div>
         </div>
         <div id="map2" class="map">
             <div class="legend" id="legend2">
-                Legend goes here for Map 2
+                Légende pour la Carte 2
             </div>
         </div>
     </div>
     <div id="text_sigma">
-        Analyse forestière de petite échelle dans la région de Toulouse sud à partir d'images Sentinel 2 (L2A). <br>
+        Analyse forestière à petite échelle dans la région sud de Toulouse à partir d'images Sentinel 2 (L2A). <br>
         Classification supervisée et calcul du NDVI des forêts réalisés à l'aide d'images matricielles et de données provenant de la base de données BD Forêt® version 2.0 comme référence pour les échantillons.    </div>
 
     <div id="footer">
@@ -113,29 +113,29 @@
     <script src="https://unpkg.com/leaflet-switch-layers/dist/leaflet-switch-layers.js"></script>
     <script src="https://unpkg.com/leaflet-minimap/dist/Control.MiniMap.min.js"></script>
     <script>
-        // Criar o mapa 1
+        // Créer la carte 1
         var map1 = L.map('map1').setView([43.3860585,1.3935381,13], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributeurs'
         }).addTo(map1);
-        L.control.scale({ imperial: false }).addTo(map1); // Adiciona a barra de escala em km² ao map1
+        L.control.scale({ imperial: false }).addTo(map1); // Ajouter l'échelle en km² à la carte 1
 
-        // Adicionar o MiniMap ao mapa 1 com estilo "Dark" do OpenTopoMap
+        // Ajouter la MiniMap à la carte 1 avec le style "Dark" de OpenTopoMap
         var miniMap1 = new L.Control.MiniMap(
             L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://opentopomap.org/">OpenTopoMap</a> contributors'
+                attribution: '&copy; <a href="https://opentopomap.org/">OpenTopoMap</a> contributeurs'
             }), 
             { toggleDisplay: true }
         );
         miniMap1.addTo(map1);
 
-        // Personalizar estilo CSS do mini mapa 1
-        miniMap1._container.style.border = '1px solid black'; // Adiciona uma borda preta de 2 pixels ao redor do mini mapa 1
+        // Personnaliser le style CSS de la MiniMap 1
+        miniMap1._container.style.border = '1px solid black'; // Ajouter une bordure noire de 2 pixels autour de la MiniMap 1
 
-        // Adicionar o Geocoder ao mapa 1
+        // Ajouter le Geocoder à la carte 1
         var geocoder1 = L.Control.geocoder({
             defaultMarkGeocode: false,
-            placeholder: 'Pesquisar localização...',
+            placeholder: 'Rechercher un lieu...',
             geocoder: L.Control.Geocoder.nominatim()
         })
         .on('markgeocode', function(event) {
@@ -144,14 +144,14 @@
         })
         .addTo(map1);
 
-        // Adicionar camada WMS padrão ao mapa1
+        // Ajouter la couche WMS par défaut à la carte 1
         L.tileLayer.wms('https://geotests.net/geoserver/FelipeAM/wms', {
             layers: 'FelipeAM:masque_foret',
             format: 'image/png',
             transparent: true
         }).addTo(map1);
 
-        // Definir a legenda para o mapa1
+        // Définir la légende pour la carte 1
         document.getElementById('legend1').innerHTML = '<b>Classes forêt :</b><br>\
     <span style="color: green;">𒊹</span> <span style="color: black;"></span>  Feuillus <br>\
     <span style="color: gold;">𒊹</span> <span style="color: black;"></span>  Peupleraie <br>\
@@ -159,36 +159,36 @@
     <span style="color: blue;">𒊹</span> <span style="color: black;"></span>  Pins <br>\
     <span style="color: cyan;">𒊹</span> <span style="color: black;"></span>  Mélange pins et autre conifères';
 
-        // Mover a camada 'FelipeAM:Groupe6_carte_essences_lvl2' para o mapa 1
+        // Déplacer la couche 'FelipeAM:Groupe6_carte_essences_lvl2' vers la carte 1
         var layerGroupe6 = L.tileLayer.wms('https://geotests.net/geoserver/FelipeAM/wms', {
             layers: 'FelipeAM:Groupe6_carte_essences_lvl2',
             format: 'image/png',
             transparent: true
         }).addTo(map1);
 
-        // Criar o mapa 2
+        // Créer la carte 2
         var map2 = L.map('map2').setView([43.3860585,1.3935381,13], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributeurs'
         }).addTo(map2);
-        L.control.scale({ imperial: false }).addTo(map2); // Adiciona a barra de escala em km² ao map2
+        L.control.scale({ imperial: false }).addTo(map2); // Ajouter l'échelle en km² à la carte 2
 
-        // Adicionar o MiniMap ao mapa 2 com estilo "Dark" do OpenTopoMap
+        // Ajouter la MiniMap à la carte 2 avec le style "Dark" de OpenTopoMap
         var miniMap2 = new L.Control.MiniMap(
             L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://opentopomap.org/">OpenTopoMap</a> contributors'
+                attribution: '&copy; <a href="https://opentopomap.org/">OpenTopoMap</a> contributeurs'
             }), 
             { toggleDisplay: true }
         );
         miniMap2.addTo(map2);
 
-        // Personalizar estilo CSS do mini mapa 2
-        miniMap2._container.style.border = '1px solid black'; // Adiciona uma borda preta de 2 pixels ao redor do mini mapa 2
+        // Personnaliser le style CSS de la MiniMap 2
+        miniMap2._container.style.border = '1px solid black'; // Ajouter une bordure noire de 2 pixels autour de la MiniMap 2
 
-        // Adicionar o Geocoder ao mapa 2
+        // Ajouter le Geocoder à la carte 2
         var geocoder2 = L.Control.geocoder({
             defaultMarkGeocode: false,
-            placeholder: 'Pesquisar localização...',
+            placeholder: 'Rechercher un lieu...',
             geocoder: L.Control.Geocoder.nominatim()
         })
         .on('markgeocode', function(event) {
@@ -197,10 +197,10 @@
         })
         .addTo(map2);
 
-        // Adicionar controle de camadas para mapa2
+        // Ajouter le contrôle des couches pour la carte 2
         var baseMaps = {
             'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributeurs'
             })
         };
 
@@ -217,20 +217,20 @@
             })
         };
 
-        // Adiciona a camada 'FelipeAM:NDVI_20220922' como ativa por padrão
+        // Ajouter la couche 'FelipeAM:NDVI_20220922' comme active par défaut
         overlayMaps['NDVI 22/09/2022'].addTo(map2);
 
         L.control.layers(baseMaps, overlayMaps).addTo(map2);
 
-        // Definir a legenda para o mapa2
+        // Définir la légende pour la carte 2
         document.getElementById('legend2').innerHTML = '<b>Classes NDVI :</b><br>\
     <span style="color: red;">𒊹</span> <span style="color: black;"></span>  Sol nu <br>\
-    <span style="color: orange;">𒊹</span> <span style="color: black;"></span>  Sol nu et vegetation mort <br>\
-    <span style="color: Khaki;">𒊹</span> <span style="color: black;"></span>  Vegetation faible <br>\
-    <span style="color: LightGreen;">𒊹</span> <span style="color: black;"></span>  Vegetation moyenne <br>\
-    <span style="color: green;">𒊹</span> <span style="color: black;"></span>  Vegetation forte active';
+    <span style="color: orange;">𒊹</span> <span style="color: black;"></span>  Sol nu et végétation morte <br>\
+    <span style="color: Khaki;">𒊹</span> <span style="color: black;"></span>  Végétation faible <br>\
+    <span style="color: LightGreen;">𒊹</span> <span style="color: black;"></span>  Végétation moyenne <br>\
+    <span style="color: green;">𒊹</span> <span style="color: black;"></span>  Végétation forte active';
 
-        // Sincronize a visualização do map1 com o map2
+        // Synchroniser la vue de la carte 1 avec la carte 2
         var syncMaps = true;
         map1.on('moveend', function() {
             if (syncMaps) {
@@ -238,47 +238,19 @@
                 map2.setView(map1.getCenter(), map1.getZoom());
                 setTimeout(function() {
                     syncMaps = true;
-                }, 100); // Tempo de espera em milissegundos antes de reativar a sincronização
+                }, 100); // Temps d'attente en millisecondes avant de réactiver la synchronisation
             }
         });
 
-        // Sincronize a visualização do map2 com o map1
+        // Synchroniser la vue de la carte 2 avec la carte 1
         map2.on('moveend', function() {
             if (syncMaps) {
                 syncMaps = false;
                 map1.setView(map2.getCenter(), map2.getZoom());
                 setTimeout(function() {
                     syncMaps = true;
-                }, 100); // Tempo de espera em milissegundos antes de reativar a sincronização
+                }, 100); // Temps d'attente en millisecondes avant de réactiver la synchronisation
             }
-        });
-
-        // Função para obter o valor do atributo 'TFV' da camada shape 'FelipeAM:masque_foret'
-        function getTFVValue(latlng) {
-            var url = 'https://geotests.net/geoserver/FelipeAM/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&LAYERS=FelipeAM:masque_foret&QUERY_LAYERS=FelipeAM:masque_foret&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=' + latlng.lng + '&Y=' + latlng.lat + '&SRS=EPSG:4326&WIDTH=256&HEIGHT=256';
-
-            fetch(url)
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    // Verifica se há features retornadas
-                    if (data.features.length > 0) {
-                        // Obtém o valor do atributo 'TFV' da primeira feature
-                        var tfvValue = data.features[0].properties.TFV;
-                        console.log("Valor de TFV:", tfvValue);
-                    } else {
-                        console.log("Nenhuma feature retornada.");
-                    }
-                })
-                .catch(function(error) {
-                    console.error('Erro ao obter valor de TFV:', error);
-                });
-        }
-
-        // Adiciona um evento de clique no mapa para obter o valor do atributo 'TFV' na posição do clique
-        map1.on('click', function(event) {
-            getTFVValue(event.latlng);
         });
     </script>
 </body>
